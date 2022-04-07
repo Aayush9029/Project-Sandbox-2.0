@@ -11,6 +11,9 @@
 		B2364D6127FF493800DB6B52 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2364D6027FF493800DB6B52 /* ContentView.swift */; };
 		B2364D6327FF493900DB6B52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2364D6227FF493900DB6B52 /* Assets.xcassets */; };
 		B2364D6627FF493900DB6B52 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2364D6527FF493900DB6B52 /* Preview Assets.xcassets */; };
+		B2364D6E27FF4AFF00DB6B52 /* MetalKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2364D6D27FF4AFF00DB6B52 /* MetalKitView.swift */; };
+		B2364D7027FF4E2F00DB6B52 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2364D6F27FF4E2F00DB6B52 /* Coordinator.swift */; };
+		B2364D7227FF50F000DB6B52 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = B2364D7127FF50F000DB6B52 /* Shaders.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,9 @@
 		B2364D6027FF493800DB6B52 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B2364D6227FF493900DB6B52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B2364D6527FF493900DB6B52 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B2364D6D27FF4AFF00DB6B52 /* MetalKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalKitView.swift; sourceTree = "<group>"; };
+		B2364D6F27FF4E2F00DB6B52 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		B2364D7127FF50F000DB6B52 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +59,7 @@
 			children = (
 				B2364D5E27FF493800DB6B52 /* Project_Sandbox_2_0App.swift */,
 				B2364D6027FF493800DB6B52 /* ContentView.swift */,
+				B2364D6C27FF4A6800DB6B52 /* Display */,
 				B2364D6227FF493900DB6B52 /* Assets.xcassets */,
 				B2364D6427FF493900DB6B52 /* Preview Content */,
 			);
@@ -65,6 +72,16 @@
 				B2364D6527FF493900DB6B52 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B2364D6C27FF4A6800DB6B52 /* Display */ = {
+			isa = PBXGroup;
+			children = (
+				B2364D6D27FF4AFF00DB6B52 /* MetalKitView.swift */,
+				B2364D6F27FF4E2F00DB6B52 /* Coordinator.swift */,
+				B2364D7127FF50F000DB6B52 /* Shaders.metal */,
+			);
+			path = Display;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +155,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2364D6127FF493800DB6B52 /* ContentView.swift in Sources */,
+				B2364D6E27FF4AFF00DB6B52 /* MetalKitView.swift in Sources */,
 				B2364D5F27FF493800DB6B52 /* Project_Sandbox_2_0App.swift in Sources */,
+				B2364D7027FF4E2F00DB6B52 /* Coordinator.swift in Sources */,
+				B2364D7227FF50F000DB6B52 /* Shaders.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
