@@ -8,9 +8,9 @@
 import MetalKit
 
 struct Particle {
-    var color: float4
-    var position: float2
-    var velocity: float2
+    var color: SIMD4<Float>
+    var position: SIMD2<Float>
+    var velocity: SIMD2<Float>
     var lifespan: Float16
 }
 
@@ -24,8 +24,10 @@ class Coordinator : NSObject, MTKViewDelegate {
     
     var particleBuffer: MTLBuffer!
     
-    var screenSize: Float!
-    var particleCount: Int = 10_00_000
+    var screenWidth: Float!
+    var screenHeight: Float!
+
+    var particleCount: Int = 5_000 //change this to add / remove particle
     
     init(_ parent: MetalKitView) {
         
@@ -35,7 +37,8 @@ class Coordinator : NSObject, MTKViewDelegate {
         }
         self.metalCommandQueue = metalDevice.makeCommandQueue()!
         
-        screenSize = Float(UIScreen.main.bounds.width)
+        screenWidth = Float(UIScreen.main.bounds.width)
+        screenHeight = Float(UIScreen.main.bounds.height) 
         
         let library =  metalDevice.makeDefaultLibrary()
         let clearFunc = library?.makeFunction(name: "clear_pass_func")
@@ -58,15 +61,16 @@ class Coordinator : NSObject, MTKViewDelegate {
             let red: Float = Float(arc4random_uniform(100)) / 100
             let green: Float = Float(arc4random_uniform(100)) / 100
             let blue: Float = Float(arc4random_uniform(100)) / 100
-            let particle = Particle(color: float4(red, green, blue, 1),
-                                    position: float2(Float(arc4random_uniform(UInt32(screenSize))),
-                                                     Float(arc4random_uniform(UInt32(screenSize)))),
-                                    velocity: float2((Float(arc4random() %  10) - 5) + 1,
+            let particle = Particle(color: SIMD4<Float>(red, green, blue, 1),
+                                    position: SIMD2<Float>(Float(arc4random_uniform(UInt32(screenWidth)) + 100),
+                                                     Float(arc4random_uniform(UInt32(screenHeight))) + 10),
+                                    velocity: SIMD2<Float>((Float(arc4random() %  10) - 5) + 1,
                                                      (Float(arc4random() %  10) - 5) + 1),
                                     lifespan: 100.00
             )
             particles.append(particle)
         }
+        print(particles.count)
         particleBuffer = metalDevice?.makeBuffer(bytes: particles, length: MemoryLayout<Particle>.stride * particleCount, options: [])
     }
     

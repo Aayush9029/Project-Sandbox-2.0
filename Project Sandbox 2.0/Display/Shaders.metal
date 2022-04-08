@@ -26,6 +26,10 @@ kernel void draw_dots_func(device Particle *particles [[ buffer(0) ]],
     float2 position = particle.position;
     float2 velocity = particle.velocity;
     
+    uint2 texturePosition = uint2(position.x, position.y);
+    half4 col = half4(particle.color.r, particle.color.g, particle.color.b, 1);
+    
+    
     position += velocity;
     
     if (position.x < 0 || position.x > width){
@@ -34,14 +38,13 @@ kernel void draw_dots_func(device Particle *particles [[ buffer(0) ]],
     if (position.y < 0 || position.y > height){
         velocity.y *= -1;
     }
+    
 
     particle.position = position;
     particle.velocity = velocity;
     
     particles[id] = particle;
     
-    uint2 texturePosition = uint2(position.x, position.y);
-    half4 col = half4(particle.color.r, particle.color.g, particle.color.b, 1);
     tex.write(col, texturePosition);
     
     tex.write(col, texturePosition + uint2(0,1));
