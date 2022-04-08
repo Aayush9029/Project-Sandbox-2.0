@@ -14,3 +14,6 @@
 
 > Here's 25 Million particles with screen collision detection(FPS: 55-60)
 ![IMG_0387](https://user-images.githubusercontent.com/43297314/162537875-0cc63ba7-69cc-4463-a5c3-7b2fcc6aff03.PNG)
+
+
+> Tested on iPad Air 4 
