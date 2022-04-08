@@ -28,6 +28,7 @@ struct MetalKitView: UIViewRepresentable {
             mtkView.device = metalDevice
         }
         mtkView.framebufferOnly = false
+        
         return mtkView
     }
 }

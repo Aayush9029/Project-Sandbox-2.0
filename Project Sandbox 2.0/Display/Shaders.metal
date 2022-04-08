@@ -28,9 +28,13 @@ kernel void draw_dots_func(device Particle *particles [[ buffer(0) ]],
     
     position += velocity;
     
-    if(position.x < 0 || position.x > width) velocity.x *= -1;
-    if(position.y < 0 || position.y > height) velocity.y *= -1;
-    
+    if (position.x < 0 || position.x > width){
+        velocity.x *= -1;
+    }
+    if (position.y < 0 || position.y > height){
+        velocity.y *= -1;
+    }
+
     particle.position = position;
     particle.velocity = velocity;
     

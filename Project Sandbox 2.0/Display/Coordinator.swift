@@ -11,6 +11,7 @@ struct Particle {
     var color: float4
     var position: float2
     var velocity: float2
+    var lifespan: Float16
 }
 
 class Coordinator : NSObject, MTKViewDelegate {
@@ -24,7 +25,7 @@ class Coordinator : NSObject, MTKViewDelegate {
     var particleBuffer: MTLBuffer!
     
     var screenSize: Float!
-    var particleCount: Int = 1000
+    var particleCount: Int = 10_00_000
     
     init(_ parent: MetalKitView) {
         
@@ -38,11 +39,11 @@ class Coordinator : NSObject, MTKViewDelegate {
         
         let library =  metalDevice.makeDefaultLibrary()
         let clearFunc = library?.makeFunction(name: "clear_pass_func")
-        let drawDontFunc = library?.makeFunction(name: "draw_dots_func")
+        let drawDotFunc = library?.makeFunction(name: "draw_dots_func")
         
         do {
             clearPass = try self.metalDevice?.makeComputePipelineState(function: clearFunc!)
-            drawDotPass = try self.metalDevice?.makeComputePipelineState(function: drawDontFunc!)
+            drawDotPass = try self.metalDevice?.makeComputePipelineState(function: drawDotFunc!)
         }catch let error as NSError {
             print(error)
         }
@@ -61,7 +62,9 @@ class Coordinator : NSObject, MTKViewDelegate {
                                     position: float2(Float(arc4random_uniform(UInt32(screenSize))),
                                                      Float(arc4random_uniform(UInt32(screenSize)))),
                                     velocity: float2((Float(arc4random() %  10) - 5) + 1,
-                                                     (Float(arc4random() %  10) - 5) + 1))
+                                                     (Float(arc4random() %  10) - 5) + 1),
+                                    lifespan: 100.00
+            )
             particles.append(particle)
         }
         particleBuffer = metalDevice?.makeBuffer(bytes: particles, length: MemoryLayout<Particle>.stride * particleCount, options: [])
